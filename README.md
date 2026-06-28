@@ -1,96 +1,27 @@
-# Micron-Interpreter
+# Micron Interpreter
 
-Micron-Interpreter es un proyecto que implementa un intérprete para el lenguaje "Micron". Este repositorio contiene el código fuente, ejemplos y documentación básica para ejecutar, probar y contribuir al intérprete.
+This repository aims to showcase the source code of this improvised interpreter, written entirely in Python. Here, you can contribute ideas, code, and your opinions, which will help me develop this language into a more complex machine. The file <b>```micron.py```</b> contains all the main code and functions of the language (including a console where you can enter different commands and language functions).
 
-## Características
+## Base installation
 
-- Intérprete ligero para Micron
-- Soporte para ejecución interactiva y por archivos
-- Ejemplos de scripts y casos de prueba
-- Estructura preparada para extensiones y mejoras
+This interpreter, despite being so simple, requires several basic prerequisites to run it at its maximum potential and fully enjoy it.
 
-## Requisitos
+- The interpreter can be run on any version of Python later than 3.8 or that contains the ```os``` library.
+- The interpreter necessarily needs to run on Windows because it uses the ```color``` command, which is native to Windows.
 
-- Sistema operativo: Linux / macOS / Windows
-- Python 3.8+ o el runtime necesario (si aplica)
-- Herramientas de compilación: make, gcc (si el proyecto contiene código en C/C++)
+If you meet these requirements, you'll be able to get the most out of this interpreter and experiment with its features.
 
-> Nota: Ajusta estos requisitos según el lenguaje y dependencias reales del proyecto.
+## Structure
 
-## Instalación
+The language is divided into different stages where the interpreter analyzes each part of a line of code to execute it accurately (This language does not have an AST as such):
 
-1. Clona el repositorio:
+- The lexer is responsible for splitting each line of code into two parts: the arguments and the function itself (```func_token``` and ```args_tokens```) for later use. If the function uses variables (i.e., ```var:``` or ```set:```), it divides the line into three parts (```def_token```, ```def_name_token```, and ```def_value_token```). Its second function is to assign a value or type to each piece of data in an argument to organize it and prevent a number from being passed as, for example, a string.
+- The parser is responsible for verifying whether the entered variables are correct or if the arguments are empty (to avoid errors in other parts of the process). It returns errors if the syntax or the entered variables are incorrect.
+- The AST again arranges and organizes the formats and types of each entered value to finally execute the entered functions.
+- The interpreter executes all functions based on the parameters and all previously processed data, executing everything in a straightforward manner.
 
-   git clone https://github.com/EXE1024/Micron-Interpreter.git
-   cd Micron-Interpreter
+## Miscellaneous
 
-2. (Opcional) Crea y activa un entorno virtual (si el proyecto es Python):
+In the ```examples``` folder, there's a README file where you'll find all the functions and how to program using this language. ```CONTRIBUTTING.md``` contains some rules for collaborating on or cloning the project.
 
-   python -m venv venv
-   source venv/bin/activate  # macOS / Linux
-   venv\Scripts\activate    # Windows
-
-3. Instala dependencias (si existen):
-
-   pip install -r requirements.txt
-
-> Si el proyecto no usa Python, sigue las instrucciones específicas del lenguaje en el archivo CONTRIBUTING o en la sección de compilación.
-
-## Uso
-
-Ejecuta el intérprete en modo archivo:
-
-   ./micron path/al/script.micron
-
-Ejecuta en modo interactivo (REPL):
-
-   ./micron
-
-Ejemplos rápidos:
-
-- Ejecutar script de ejemplo:
-
-  ./micron examples/hello.micron
-
-- Ejecutar pruebas (si están configuradas):
-
-  make test
-
-Ajusta los comandos anteriores según el binario o script principal del proyecto.
-
-## Estructura del repositorio
-
-- src/     - Código fuente del intérprete
-- examples/ - Scripts de ejemplo en Micron
-- tests/    - Tests automatizados
-- docs/     - Documentación adicional
-
-> Si tu estructura es diferente, actualiza esta sección para reflejar los nombres reales de carpetas y archivos.
-
-## Contribuciones
-
-¡Gracias por querer contribuir! Para contribuir:
-
-1. Haz un fork del repositorio.
-2. Crea una rama con un nombre descriptivo: `git checkout -b feature/nombre`.
-3. Realiza cambios y añade tests si aplica.
-4. Haz commit y push a tu fork.
-5. Abre un Pull Request describiendo los cambios.
-
-Por favor, sigue las buenas prácticas: escribe mensajes de commit claros, añade tests y actualiza la documentación.
-
-## Licencia
-
-Incluye aquí la licencia del proyecto (por ejemplo, MIT, Apache-2.0). Si no has añadido un archivo LICENSE, considera hacerlo para aclarar los términos de uso.
-
-## Contacto
-
-Si tienes preguntas o quieres discutir características, abre un issue o contacta al mantenedor en GitHub: https://github.com/EXE1024
-
----
-
-Si quieres, puedo:
-
-- Personalizar el README con instrucciones concretas sobre cómo compilar/ejecutar según el lenguaje usado en este repo.
-- Añadir badges (build, license, coverage) y una sección de ejemplos más detallada.
-- Escribir un CONTRIBUTING.md y plantillas de PR/issue.
+I'll be adding more functions and tasks to the language soon. Stay tuned!
