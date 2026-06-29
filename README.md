@@ -1,4 +1,4 @@
-# Micron Interpreter
+# Micron Interpreter <font color = #ababab>1.1.1</font>
 
 This repository aims to showcase the source code of this improvised interpreter, written entirely in Python. Here, you can contribute ideas, code, and your opinions, which will help me develop this language into a more complex machine. The file <b>```micron.py```</b> contains all the main code and functions of the language (including a console where you can enter different commands and language functions).
 
@@ -21,7 +21,5 @@ The language is divided into different stages where the interpreter analyzes eac
 - The interpreter executes all functions based on the parameters and all previously processed data, executing everything in a straightforward manner.
 
 ## Miscellaneous
-
-In the ```examples``` folder, there's a README file where you'll find all the functions and how to program using this language. ```CONTRIBUTTING.md``` contains some rules for collaborating on or cloning the project.
 
 I'll be adding more functions and tasks to the language soon. Stay tuned!
