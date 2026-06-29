@@ -3,7 +3,7 @@
 ## How to execute something
 - <b>1. Files</b>: Using the command ```import [filepath]``` you can open and execute the contents of files (Example: ```import examples\variables.mscript```)
 - <b>2.Interpreter (Direct)</b>: Type direct code into the console and press ENTER to execute the code
-
+- <b>3.CMD</b>: Open PowerShell and enter this command to launch a file from the Windows console: <b>```py micron.py [filepath]```</b> or <b>```python micron.py [filepath]```</b>
 ## Code
 
 Run the default functions in the interpreter by writing to a file or in the terminal (Recommended: It is better to use files since you can run long codes or test several functions at once):
