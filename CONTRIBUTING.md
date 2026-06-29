@@ -1,4 +1,4 @@
-# PROGRAMMING
+# CONTRIBUTING
 
 ## How to execute something
 - <b>1. Files</b>: Using the command ```import [filepath]``` you can open and execute the contents of files (Example: ```import examples\variables.mscript```)
