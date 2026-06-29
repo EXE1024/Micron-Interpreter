@@ -1,4 +1,4 @@
-# Micron Interpreter <font color = #ababab>1.1.1</font>
+# Micron Interpreter <font size=12>1.1.1</font>
 
 This repository aims to showcase the source code of this improvised interpreter, written entirely in Python. Here, you can contribute ideas, code, and your opinions, which will help me develop this language into a more complex machine. The file <b>```micron.py```</b> contains all the main code and functions of the language (including a console where you can enter different commands and language functions).
 
