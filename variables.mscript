@@ -1,0 +1,6 @@
+var: number = 5
+//create
+print(number)
+set: number = 10
+//modify
+print(number)
