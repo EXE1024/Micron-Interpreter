@@ -1,0 +1,6 @@
+//strings
+print('text')
+//eval
+print(2+2)
+//number
+print(4)
