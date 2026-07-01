@@ -16,7 +16,7 @@ class MVE:
         self.root.resizable(True, False)
 
         self.act_dir = os.path.dirname(__file__)
-        self.securedpath = os.path.join(self.act_dir, "resources", "mev_icon.png")
+        self.securedpath = os.path.join(self.act_dir, "resources", "mve_icon.png")
         self.icon = tk.PhotoImage(file=self.securedpath)
         self.root.iconphoto(True, self.icon)
         self.path = tk.StringVar()
