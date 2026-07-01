@@ -83,17 +83,17 @@ class MVE:
 
         self.console = scrolledtext.ScrolledText(
             cnsenv, 
-            width=40,            # Ancho en cantidad de caracteres
-            height=8,            # Alto en cantidad de líneas
-            font=("Consolas", 9),# Fuente y tamaño del texto interno
-            wrap=tk.WORD,        # Corta las líneas por palabras enteras
+            width=40,           
+            height=8,           
+            font=("Consolas", 9),
+            wrap=tk.WORD,        
             
-            bg="#001838",        # Fondo del área de texto
-            fg="#FFFFFF",        # Color de las letras
-            padx=5,             # Margen interno izquierdo y derecho
-            pady=1,             # Margen interno superior e inferior
-            relief="flat",      # Tipo de borde (flat, solid, groove, sunken)
-            borderwidth=0        # Grosor del borde
+            bg="#001838",
+            fg="#FFFFFF",      
+            padx=5,            
+            pady=1,            
+            relief="flat",     
+            borderwidth=0        
         )
         self.console.pack(anchor="s", fill="x", padx=10, pady=10, expand=True)
         self.console.insert(tk.INSERT, "------ Console ------\n")
