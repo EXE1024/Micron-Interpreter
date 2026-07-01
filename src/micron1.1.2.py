@@ -86,7 +86,7 @@ def Micron(run):
     try:
 
         if DEBUG:
-            print(f"[RASTREO] -> Función Micron recibió la línea: '{run}'")
+            print(f"[RASTREO] -> Micron function received the line: '{run}'")
 
         if run.endswith(";"):
 
@@ -96,11 +96,11 @@ def Micron(run):
             return
         
         if not run or not run.strip():
-            if DEBUG: print("[RASTREO] -> Línea vacía descartada.")
+            if DEBUG: print("[RASTREO] -> Empty line discarded.")
             return
 
         if run.strip().startswith("//"):
-            if DEBUG: print("[RASTREO] -> Comentario detectado y descartado.")
+            if DEBUG: print("[RASTREO] -> Comment detected and discarded.")
             return
 
         # LEXER
@@ -121,23 +121,23 @@ def Micron(run):
             definition = False
         else:
             print("Syntax problem")
-            if DEBUG: print("[RASTREO] -> La línea NO encajó como definición ni como función. Descartada por el Lexer.")
+            if DEBUG: print("[RASTREO] -> The line did NOT match as definition or function. Discarded by the Lexer.")
             return
         
         if definition:
             def_token = run[0:run.find(":")].strip()
             def_name_token = run[run.find(":")+1:run.find("=")].strip()
             def_value_token = run[run.find("=")+1:len(run)].strip()
-            if DEBUG: print(f"[RASTREO] -> Lexer (Definición): token='{def_token}', variable='{def_name_token}', valor='{def_value_token}'")
+            if DEBUG: print(f"[RASTREO] -> Lexer (Definition): token='{def_token}', variable='{def_name_token}', value='{def_value_token}'")
         else:
             open_paren = run.find("(")
             close_paren = run.find(")")
             if open_paren == -1 or close_paren == -1 or close_paren < open_paren:
-                if DEBUG: print("[RASTREO] -> Paréntesis inválidos en función.")
+                if DEBUG: print("[RASTREO] -> Invalid parentheses in function.")
                 return
             args_tokens = [token.strip() for token in run[open_paren+1:close_paren].split(",")]
             func_token = run[0:open_paren].strip()
-            if DEBUG: print(f"[RASTREO] -> Lexer (Función): función='{func_token}', argumentos={args_tokens}")
+            if DEBUG: print(f"[RASTREO] -> Lexer (Function): function='{func_token}', arguments={args_tokens}")
         
         if definition:
             if def_value_token.startswith("'") and def_value_token.endswith("'"):
@@ -150,7 +150,7 @@ def Micron(run):
                 def_value_type_token = "number"
             else:
                 def_value_type_token = "variable"
-            if DEBUG: print(f"[RASTREO] -> Tipo de valor detectado: {def_value_type_token}")
+            if DEBUG: print(f"[RASTREO] -> Value type detected: {def_value_type_token}")
         else:
             for token in args_tokens:
                 if token.startswith("'") and token.endswith("'"):
@@ -164,17 +164,17 @@ def Micron(run):
                 elif token.startswith("<") and token.endswith(">"):
                     indexmain = args_tokens.index(token)
                     args_type_tokens.append("special")
-                    print(f"[RASTREO] -> Argumento especial: {token}")
+                    print(f"[RASTREO] -> Special argument: {token}")
                     args_special = True
                     args_special_main = token[token.find("<")+1:token.find(":")]
-                    print(f"[RASTREO] -> Argumento especial, Nombre:{args_special_main}")
+                    print(f"[RASTREO] -> Special argument, Name: {args_special_main}")
                     args_special_value = token[token.find(":")+1:token.find(">")]
-                    print(f"[RASTREO] -> Argumento especial, Nombre:{args_special_value}")
-                    print(f"[RASTREO] -> Argumento especial, Etiqueta: {args_special_main}, Valor: {args_special_value}")
+                    print(f"[RASTREO] -> Special argument, Value: {args_special_value}")
+                    print(f"[RASTREO] -> Special argument, Tag: {args_special_main}, Value: {args_special_value}")
                     args_tokens.pop(indexmain)
                 else:
                     args_type_tokens.append("variable")
-            if DEBUG: print(f"[RASTREO] -> Tipos de argumentos detectados: {args_type_tokens}")
+            if DEBUG: print(f"[RASTREO] -> Argument types detected: {args_type_tokens}")
         
         # PARSER
         if not definition:
@@ -200,14 +200,14 @@ def Micron(run):
                     args_tokens[i] = token.lower() == "true"
                 elif args_type_tokens[i] == "str":
                     args_tokens[i] = token[1:-1]
-            if DEBUG: print(f"[RASTREO] -> Argumentos procesados por AST listos para ejecutar: {args_tokens}")
+            if DEBUG: print(f"[RASTREO] -> AST-processed arguments ready to execute: {args_tokens}")
 
         # INTERPRETER
         if not definition:
-            if DEBUG: print(f"[RASTREO] -> Intentando ejecutar función: '{func_token}'")
+            if DEBUG: print(f"[RASTREO] -> Attempting to execute function: '{func_token}'")
             if func_token == "print":
                 if args_special == True and args_special_main == "split":
-                        print("[RASTREO]: Argumento especial detectado en la funcion 'print'")
+                        print("[RASTREO]: Special argument detected in the 'print' function")
                         print(*args_tokens, sep=args_special_value)
                 elif not args_tokens:
                     print("There are no parameters")
@@ -219,12 +219,12 @@ def Micron(run):
                 if args_tokens:
                     os.system(str(args_tokens[0]))
             elif func_token == "manual":
-                print("╔═Manual════════════════════════════════════════════════════════════════╗")
+                print("╔═Manual═══════════════════════════════════════════════════════[...]")
                 print("║ print(any) » Print any format at the terminal                         ║")
                 print("║ version() » Print the interpreter version                             ║")
                 print("║ system(str) » Run a command in the Windows console                    ║")
                 print("║ manual() » Run this menu                                              ║")
-                print("╚═══════════════════════════════════════════════════════════════════════╝")
+                print("╚══════════════════════════════════════════════════════════[...]")
             elif func_token == "clear":
                 os.system("cls")
                 os.system("color 1f")
@@ -246,7 +246,7 @@ def Micron(run):
             if def_token == "var":
                 if def_name_token not in variables:
                     variables[def_name_token] = valor_final
-                    if DEBUG: print(f"[RASTREO] -> Guardada variable '{def_name_token}' con valor: '{valor_final}'")
+                    if DEBUG: print(f"[RASTREO] -> Saved variable '{def_name_token}' with value: '{valor_final}'")
                 else:
                     print(def_name_token + " already exists")
             elif def_token == "set":
@@ -256,7 +256,7 @@ def Micron(run):
                 else:
                     if def_value_type_token != "eval":
                         variables[def_name_token] = valor_final
-                        if DEBUG: print(f"[RASTREO] -> Actualizada variable '{def_name_token}' con valor: '{valor_final}'")
+                        if DEBUG: print(f"[RASTREO] -> Updated variable '{def_name_token}' with value: '{valor_final}'")
                     else:
                         variables[def_name_token] = math(def_value_token)
             else:
@@ -283,8 +283,8 @@ if len(sys.argv) > 1:
         with open(importfile, "r", encoding="utf8") as main:
             content = main.read().splitlines()
         if DEBUG:
-            print(f"[RASTREO 1] -> Archivo abierto con éxito. Líneas leídas: {len(content)}")
-            print(f"[RASTREO 1] -> Contenido crudo leído: {content}")
+            print(f"[RASTREO 1] -> File opened successfully. Lines read: {len(content)}")
+            print(f"[RASTREO 1] -> Raw content read: {content}")
 
         for line in content:
             line_cleaned = line.strip()
