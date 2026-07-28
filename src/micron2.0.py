@@ -219,7 +219,7 @@ def Micron(run, i):
                         elif token not in variables:
                             print(token + " is not a variable")
                             return
-        # this is not a AST LOL :-P
+
         if not definition:
             for i, token in enumerate(args_tokens):
                 if args_type_tokens[i] == "variable":
@@ -243,21 +243,14 @@ def Micron(run, i):
                 else:
                     print(*args_tokens)
             elif func_token == "version":
-                print("Micron V1.1.2")
+                print("Micron V2.0 [DISCONTINUED] \n Made by EXE1024 \n")
             elif func_token == "system":
                 if args_tokens:
                     os.system(str(args_tokens[0]))
-            elif func_token == "manual":
-                print("╔═Manual════════════════════════════════════════════════════════════════╗")
-                print("║ print(any) » Print any format at the terminal                         ║")
-                print("║ version() » Print the interpreter version                             ║")
-                print("║ system(str) » Run a command in the Windows console                    ║")
-                print("║ manual() » Run this menu                                              ║")
-                print("╚═══════════════════════════════════════════════════════════════════════╝")
             elif func_token == "clear":
                 os.system("cls")
                 os.system("color 1f")
-                print("Micron Interpreter V1.1.1")
+                print("Micron Interpreter V2.0 [DISCONTINUED]")
             elif func_token == "input": 
                 if len(args_tokens) >= 1 and args_special_main == "out" and args_special:
                     data = input(args_tokens[0])
@@ -294,7 +287,11 @@ def Micron(run, i):
                 else:
                     print(*args_tokens)
             elif func_token == "exit":
-                sys.exit(0)
+                sys.exit(args_tokens[0])
+            elif func_token == "exec":
+                data = Micron(args_tokens[0])
+                if args_special and args_special_main == "return":
+                    variables[args_special_value] = data
             elif func_token in functions:
                 return f"jumpline:{functions[func_token]}"
             else:
@@ -354,7 +351,6 @@ if len(sys.argv) > 1:
             time.sleep(1)
             run_clean = content[i].strip()
             data = Micron(content[i],i) 
-            print(data)
 
             if not run_clean:
                 i += 1 
