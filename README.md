@@ -94,4 +94,4 @@ You can modify the project as much as you like and feel free to comment with you
 
 ## Miscellaneous
 
-The current version of Micron is 1.1.2; sometimes this README will not be updated to the latest version.
+The current version of Micron is 2.0
