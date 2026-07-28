@@ -1,7 +1,7 @@
 @echo off
 title build.bat
 echo ===================================================
-echo   Building Micron 2.0 into .exe file
+echo   Building Micron 2.0 [DISCONTINUED] into .exe file
 echo ===================================================
 
 pip install pyinstaller --quiet
