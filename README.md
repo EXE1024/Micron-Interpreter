@@ -1,5 +1,7 @@
 # README
 
+Support and updates for the programming language Micron have been discontinued in order to develop its successor, <b>"Nexa"</b>. 27/07/2026
+
 ## How to execute something
 
 - <b>CMD</b>: Open PowerShell and enter this command to launch a file from the Windows console: <b>```.\micron2.0 [filepath]```</b>
